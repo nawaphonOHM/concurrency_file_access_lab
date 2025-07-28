@@ -30,7 +30,7 @@ func Run() error {
 
 		if errLock != nil {
 			log.Printf("[%v]: Error locking file. It seems the another process is using it.", myPid)
-			ranNum := rand.Int()
+			ranNum := rand.Intn(10)
 
 			time.Sleep(time.Duration(ranNum) * time.Second)
 
@@ -41,7 +41,7 @@ func Run() error {
 		break
 	}
 
-	holdFileSecond := rand.Int()
+	holdFileSecond := rand.Intn(10)
 
 	log.Printf("[%v]: I will sleep for %v seconds", myPid, holdFileSecond)
 
