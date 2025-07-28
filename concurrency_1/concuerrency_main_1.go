@@ -6,11 +6,11 @@ import (
 	"time"
 )
 
-func Run() {
+func Run() error {
 
 	file, err := os.OpenFile("./test.txt", os.O_WRONLY|os.O_CREATE, os.ModeExclusive)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	log.Println("File opened!! next I will sleep for 10 seconds")
@@ -25,4 +25,6 @@ func Run() {
 			panic(err)
 		}
 	}(file)
+
+	return nil
 }
