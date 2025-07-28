@@ -34,6 +34,7 @@ func Run() error {
 
 			time.Sleep(time.Duration(ranNum) * time.Second)
 
+			continue
 		}
 
 		log.Printf("[%v]: Successfully locked the file", myPid)
