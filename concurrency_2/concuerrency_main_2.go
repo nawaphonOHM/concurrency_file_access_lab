@@ -8,13 +8,13 @@ import (
 	"time"
 )
 
-func Run() {
+func Run() error {
 
 	myPid := os.Getpid()
 
 	file, err := os.OpenFile("./test2.txt", os.O_WRONLY|os.O_CREATE, os.ModePerm)
 	if err != nil {
-		panic(err)
+		return err
 	}
 
 	defer func(file *os.File) {
@@ -52,6 +52,8 @@ func Run() {
 	errUnlock := syscall.Flock(int(file.Fd()), syscall.LOCK_UN)
 
 	if errUnlock != nil {
-		panic(errUnlock)
+		return errUnlock
 	}
+
+	return nil
 }
