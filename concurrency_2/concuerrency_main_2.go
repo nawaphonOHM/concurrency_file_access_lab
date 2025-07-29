@@ -26,7 +26,7 @@ func Run() error {
 
 	for {
 		log.Printf("[%v]: I will lock the file", myPid)
-		errLock := syscall.Flock(int(file.Fd()), syscall.LOCK_EX)
+		errLock := syscall.Flock(int(file.Fd()), syscall.LOCK_EX|syscall.LOCK_NB)
 
 		if errLock != nil {
 			log.Printf("[%v]: Error locking file. It seems the another process is using it.", myPid)
